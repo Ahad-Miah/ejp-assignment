@@ -18,8 +18,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const theme = "light";
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme={theme}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
