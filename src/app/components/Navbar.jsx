@@ -2,7 +2,8 @@ import Link from "next/link";
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-300">
+       <div className=" bg-base-300 sticky z-10 top-0 ">
+         <div className="navbar container mx-auto ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -38,6 +39,7 @@ const Navbar = () => {
                 <a className="btn">Sign Up</a>
             </div>
         </div>
+       </div>
     );
 };
 
