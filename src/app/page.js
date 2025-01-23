@@ -1,13 +1,9 @@
-import Head from "next/head";
 import PostCard from "./components/PostCard";
 export default async function Home() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
   return (
     <div className="container mx-auto px-4">
-      <Head>
-      <title>BlogSphere || Home</title>
-    </Head>
     <div>
       <h1 className="font-bold text-center my-12 text-2xl ">Explore All Posts</h1>
     </div>

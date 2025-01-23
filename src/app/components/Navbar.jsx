@@ -1,9 +1,14 @@
 import Link from "next/link";
+import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
-const Navbar = () => {
+const Navbar = async () => {
+    const {getUser} = getKindeServerSession();
+    const user = await getUser();
     return (
         <div className=" bg-base-300 sticky z-10 top-0 ">
-            <div className="navbar container mx-auto ">
+            <div className="navbar flex items-center container mx-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,7 +32,7 @@ const Navbar = () => {
                             <Link href={"/myProfile"}><li className="font-semibold"><p>My Profile</p></li></Link>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">BlogSphere</a>
+                    <a className="btn btn-ghost text-xl hidden sm:block mt-3">BlogSphere</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -35,8 +40,13 @@ const Navbar = () => {
                         <Link href={"/myProfile"}><li className="font-semibold"><p>My Profile</p></li></Link>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Sign Up</a>
+                <div className="navbar-end flex gap-4">
+                    {
+                        user?<LogoutLink className="btn">Log out</LogoutLink>:<>
+                         <RegisterLink className="btn">Sign up</RegisterLink>
+                         <LoginLink className="btn">Sign in</LoginLink>
+                        </>
+                    }
                 </div>
             </div>
         </div>
