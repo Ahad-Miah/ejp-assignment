@@ -1,5 +1,13 @@
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
-const MyProfile = () => {
+const MyProfile =async () => {
+    const {getUser} = getKindeServerSession();
+    const user = await getUser();
+    if (!user) {
+        redirect("/api/auth/login");
+      }
+
     return (
         <div className="flex items-center justify-center min-h-screen shadow-xl border border-base-300">
             <div className="bg-white shadow-lg rounded-lg p-6 max-w-lg w-full text-center">
